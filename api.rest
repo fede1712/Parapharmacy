@@ -13,5 +13,5 @@ Authorization: Bearer 76df53f7d623e7e1fb52671a8e882856fc87de2260f00a565ee88c7d2b
 
 ###
 
-GET http://localhost:1337/api/products?fields[0]=name&fields[1]=description&fields[2]=price&fields[3]=stock&fields[4]=quantity&fields[5]=discount
+GET http://localhost:1337/api/products?fields[0]=name&fields[1]=description&fields[2]=price&fields[3]=stock&fields[4]=quantity&fields[5]=discount&populate[brand][fields][0]=name&populate[category][fields][0]=name&populate[images][fields][0]=url
 Authorization: Bearer 76df53f7d623e7e1fb52671a8e882856fc87de2260f00a565ee88c7d2bd9d0feb05d5027633e4bcac53f34d97c8e177b54826bce081bcd3b713e70763629ecd8610bdebd29f7b074f62c9e266516265de53ae7d75aa8d462faf5c57cb0703bf1a9e0b3d2eca3eaef283937898f582813443ea13bdaffc3c0d63b1bc65eddaee7
