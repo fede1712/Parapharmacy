@@ -1,17 +1,10 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { Urbanist } from "next/font/google";
 import "./globals.css";
+import { getCategories } from "@/lib/get-categories";
+import { Navbar } from "@/components/navbar";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+const urbanist = Urbanist({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Parafarmacia La Cúpula",
@@ -19,14 +12,19 @@ export const metadata: Metadata = {
     "Parafarmacia La Cúpula situada en el centro comercial Plaza Norte 2, en San Sebastián de lo Reyes, Madrid.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const categories = await getCategories();
   return (
     <html lang="es">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>{children}</body>
+      <body className={urbanist.className}>
+        <Navbar categories={categories} />
+
+        {children}
+      </body>
     </html>
   );
 }
