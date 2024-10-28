@@ -9,7 +9,6 @@ import { BannerData } from "./types/bannerData.type";
 export function CarouselPlugin({ bannerData }: { bannerData: any }) {
   const plugin = useRef(Autoplay({ delay: 2000, stopOnInteraction: true }));
 
-  console.log(bannerData);
   return (
     <Carousel
       plugins={[plugin.current]}
