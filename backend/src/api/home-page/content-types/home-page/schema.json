@@ -4,7 +4,8 @@
   "info": {
     "singularName": "home-page",
     "pluralName": "home-pages",
-    "displayName": "home-page"
+    "displayName": "home-page",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -23,18 +24,10 @@
       },
       "type": "string"
     },
-    "headBanner": {
-      "allowedTypes": [
-        "images"
-      ],
-      "type": "media",
-      "multiple": true,
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      },
-      "required": true
+    "head_banner_images": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::head-banner-image.head-banner-image"
     }
   }
 }

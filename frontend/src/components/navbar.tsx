@@ -3,7 +3,6 @@ import { useRouter } from "next/navigation";
 import { Button } from "./ui/button";
 import { MenuList } from "./menu-list";
 import { Categories } from "./types/categories.type";
-import { Brands } from "./types/brands.type";
 
 export const Navbar = ({ categories }: { categories: Categories[] }) => {
   const router = useRouter();

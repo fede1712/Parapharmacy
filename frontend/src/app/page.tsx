@@ -1,9 +1,14 @@
-import { Button } from "@/components/ui/button";
+import { CarouselPlugin } from "@/components/carousel";
+import { getHomeInfo } from "@/lib/get-home-info";
 
 export default async function Home() {
+  const { bannerData } = await getHomeInfo();
+
   return (
     <main>
-      <h1 className="font-bold text-5xl">ESTA ES LA HOME</h1>
+      <div className="flex flex-col items-center justify-center">
+        <CarouselPlugin bannerData={bannerData} />
+      </div>
     </main>
   );
 }

@@ -13,7 +13,6 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { Categories } from "./types/categories.type";
-import { Brands } from "./types/brands.type";
 import { getCorrectIconCategory } from "./utils/getCorrectIconCategory";
 
 export const MenuList = ({ categories }: { categories: Categories[] }) => {
@@ -21,14 +20,16 @@ export const MenuList = ({ categories }: { categories: Categories[] }) => {
     <NavigationMenu>
       <NavigationMenuList>
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Categorías</NavigationMenuTrigger>
+          <Link href="/categorias">
+            <NavigationMenuTrigger>Categorías</NavigationMenuTrigger>
+          </Link>
           <NavigationMenuContent>
             <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px ">
               {categories.map((category) => (
                 <ListItem
                   key={category.documentId}
                   title={category.name}
-                  href={`categorias/${category.slug}`}
+                  href={`/categorias/${category.slug}`}
                   className="flex justify-between items-center"
                 >
                   {getCorrectIconCategory(category.slug)}
@@ -44,7 +45,7 @@ export const MenuList = ({ categories }: { categories: Categories[] }) => {
               key={category.documentId}
               className="p-2 rounded  justify-between items-center hover:bg-accent "
             >
-              <Link href={`categorias/${category.slug}`} className="flex justify-between items-center gap-2 ">
+              <Link href={`/categorias/${category.slug}`} className="flex justify-between items-center gap-2 ">
                 {category.name} {getCorrectIconCategory(category.slug)}
               </Link>
             </NavigationMenuItem>
