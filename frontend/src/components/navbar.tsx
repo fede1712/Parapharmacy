@@ -3,15 +3,17 @@ import { useRouter } from "next/navigation";
 import { Button } from "./ui/button";
 import { MenuList } from "./menu-list";
 import { Categories } from "./types/categories.type";
+import Link from "next/link";
 
 export const Navbar = ({ categories }: { categories: Categories[] }) => {
   const router = useRouter();
 
   return (
     <nav className="flex items-center justify-between p-4 mx-auto cursor-pointer sm:max-w-4xl md:max-w-6xl lg:max-w-full">
-      <h1 className="text-3xl" onClick={() => router.push("/")}>
-        Parafarmacia <span className="font-bold">La Cúpula</span>
-      </h1>
+      <Link href="/">
+        <img src="/shop_logo.png" alt="Logo Parafarmacia La Cúpula" className="h-20" />
+      </Link>
+
       <div className="items-center justify-between hidden sm:flex">
         <MenuList categories={categories} />
       </div>

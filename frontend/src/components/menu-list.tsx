@@ -30,7 +30,9 @@ export const MenuList = ({ categories }: { categories: Categories[] }) => {
                   key={category.documentId}
                   title={category.name}
                   href={`/categorias/${category.slug}`}
-                  className="flex justify-between items-center"
+                  className={`flex justify-between items-center ${
+                    category.slug === "promociones" ? "text-red-600 font-semibold" : ""
+                  }`}
                 >
                   {getCorrectIconCategory(category.slug)}
                 </ListItem>
@@ -45,7 +47,12 @@ export const MenuList = ({ categories }: { categories: Categories[] }) => {
               key={category.documentId}
               className="p-2 rounded  justify-between items-center hover:bg-accent "
             >
-              <Link href={`/categorias/${category.slug}`} className="flex justify-between items-center gap-2 ">
+              <Link
+                href={`/categorias/${category.slug}`}
+                className={`flex justify-between items-center gap-2  ${
+                  category.slug === "promociones" ? "text-red-600 font-semibold" : ""
+                }`}
+              >
                 {category.name} {getCorrectIconCategory(category.slug)}
               </Link>
             </NavigationMenuItem>

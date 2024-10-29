@@ -10,7 +10,8 @@ export type CategoriesSlug =
   | "cabello"
   | "bebes-y-mamas"
   | "ortopedia"
-  | "cosmetica-natural";
+  | "cosmetica-natural"
+  | "promociones";
 
 export interface Categories {
   documentId: string;
