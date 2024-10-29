@@ -19,6 +19,11 @@ export const MenuList = ({ categories }: { categories: Categories[] }) => {
   return (
     <NavigationMenu>
       <NavigationMenuList>
+        <NavigationMenuItem className="p-2 rounded  justify-between items-center hover:bg-accent ">
+          <Link href={`/marcas`} className="flex justify-between items-center gap-2">
+            Nuestras marcas
+          </Link>
+        </NavigationMenuItem>
         <NavigationMenuItem>
           <Link href="/categorias">
             <NavigationMenuTrigger>Categorías</NavigationMenuTrigger>

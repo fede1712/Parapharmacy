@@ -1,6 +1,6 @@
 import { query } from "./strapi";
 import { Category } from "./types/category.type";
-const { STRAPI_HOST } = process.env;
+const { NEXT_PUBLIC_STRAPI_HOST } = process.env;
 
 export async function getCategories(locale: string = "es") {
   return query(
@@ -8,7 +8,7 @@ export async function getCategories(locale: string = "es") {
   ).then((res) => {
     return res.data.map((category: Category) => {
       const { name, slug, image: rawImage, documentId, isHighlightedCategory } = category;
-      const image = `${STRAPI_HOST}/${rawImage?.url}`;
+      const image = `${NEXT_PUBLIC_STRAPI_HOST}/${rawImage?.url}`;
       return { name, slug, image, documentId, isHighlightedCategory };
     });
   });

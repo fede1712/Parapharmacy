@@ -1,56 +1,82 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { Brand } from "./types/brand.type";
+import { Brand, ResponseBrand } from "./types/brand.type";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export default function BrandsPage() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const [data, setData] = useState<Brand[]>([]);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [inputSearchTerm, setInputSearchTerm] = useState("");
+  const [debounceTimer, setDebounceTimer] = useState<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
+    const searchTermFromUrl = searchParams.get("search");
+
+    if (searchTermFromUrl) {
+      setInputSearchTerm(searchTermFromUrl);
+      fetchBrands(searchTermFromUrl);
+    } else {
+      fetchBrands("");
+    }
+  }, [searchParams]);
+
+  const fetchBrands = async (term: string) => {
     let url;
 
-    if (searchTerm) {
-      url = `brands?filters[name][$contains]=${searchTerm}&fields[0]=name&fields[1]=description&fields[2]=slug&populate[image][fields][0]=url&locale=es`;
+    if (term) {
+      url = `brands?filters[name][$contains]=${term}&fields[0]=name&fields[1]=description&fields[2]=slug&populate[image][fields][0]=url&locale=es`;
     } else {
       url = `brands?fields[0]=name&fields[1]=description&fields[2]=slug&populate[image][fields][0]=url&locale=es`;
     }
-    fetch(`${process.env.NEXT_PUBLIC_STRAPI_HOST}/api/${url}`, {
+
+    const response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_HOST}/api/${url}`, {
       headers: { Authorization: `Bearer ${process.env.STRAPI_TOKEN}`, "Cache-Control": "no-store" },
-    })
-      .then((res) => res.json())
-      .then((data) =>
-        setData(
-          data.data.map(
-            (brand: {
-              documentId: string;
-              id: 12;
-              image: { id: 42; documentId: string; url: string };
-              name: string;
-              slug: string;
-            }) => {
-              const { name, slug, image: rawImage, documentId } = brand;
-              const image = `${process.env.NEXT_PUBLIC_STRAPI_HOST}/${rawImage.url}`;
-              return { name, slug, image, documentId };
-            }
-          )
-        )
-      );
-  }, [searchTerm]);
+    });
+
+    const data = await response.json();
+    setData(
+      data.data.map((brand: ResponseBrand) => {
+        const { name, slug, image: rawImage, documentId } = brand;
+        const image = `${process.env.NEXT_PUBLIC_STRAPI_HOST}/${rawImage.url}`;
+        return { name, slug, image, documentId };
+      })
+    );
+  };
+
+  useEffect(() => {
+    if (debounceTimer) {
+      clearTimeout(debounceTimer);
+    }
+
+    const timer = setTimeout(() => {
+      if (inputSearchTerm) {
+        router.push(`/marcas/?search=${inputSearchTerm}`, undefined);
+        fetchBrands(inputSearchTerm);
+      } else {
+        fetchBrands("");
+        router.push("/marcas", undefined);
+      }
+    }, 500);
+    setDebounceTimer(timer);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [inputSearchTerm, router]);
 
   return (
-    <div className="p-6">
+    <div className="p-6 grid grid-cols-1">
       <input
         type="text"
         placeholder="Buscar marca..."
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        className="w-full p-2 mb-4 border rounded-md shadow-md focus:outline-none focus:border-blue-500"
+        value={inputSearchTerm}
+        onChange={(e) => setInputSearchTerm(e.target.value)}
+        className="p-2 mx-12 mb-4 border rounded-md shadow-md focus:outline-none focus:border-blue-500"
       />
       <div className="grid grid-cols-5 gap-4 mx-12">
         {data?.map((brand) => {
-          console.log(brand);
-
           return (
             <Link
               key={brand.documentId}

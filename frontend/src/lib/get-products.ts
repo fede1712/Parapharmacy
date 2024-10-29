@@ -1,7 +1,7 @@
 import { query } from "./strapi";
 import { Product } from "./types/product.type";
 
-const { STRAPI_HOST } = process.env;
+const { NEXT_PUBLIC_STRAPI_HOST } = process.env;
 
 export async function getProducts(locale: string = "es") {
   return query(
@@ -9,7 +9,7 @@ export async function getProducts(locale: string = "es") {
   ).then((res) => {
     return res.data.map((product: Product) => {
       const { name, slug, description, price, stock, quantity, discount, brand, category, images: rawImages } = product;
-      const image = `${STRAPI_HOST}/${rawImages[0].url}`;
+      const image = `${NEXT_PUBLIC_STRAPI_HOST}/${rawImages[0].url}`;
       return { name, slug, description, price, stock, quantity, discount, brand, category, image };
     });
   });

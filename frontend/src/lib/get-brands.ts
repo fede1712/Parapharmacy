@@ -1,6 +1,6 @@
 import { query } from "./strapi";
 import { Brand } from "./types/brands.type";
-const { STRAPI_HOST } = process.env;
+const { NEXT_PUBLIC_STRAPI_HOST } = process.env;
 
 export async function getBrands(searchTerm?: string, locale: string = "es") {
   let url;
@@ -14,7 +14,7 @@ export async function getBrands(searchTerm?: string, locale: string = "es") {
   return query(url).then((res) => {
     return res.data.map((brand: Brand) => {
       const { name, slug, description, image: rawImage, documentId } = brand;
-      const image = `${STRAPI_HOST}/${rawImage.url}`;
+      const image = `${NEXT_PUBLIC_STRAPI_HOST}/${rawImage.url}`;
       return { name, slug, description, image, documentId };
     });
   });

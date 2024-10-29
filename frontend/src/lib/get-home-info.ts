@@ -1,6 +1,6 @@
 import { query } from "./strapi";
 import { HeadBanner } from "./types/home.type";
-const { STRAPI_HOST } = process.env;
+const { NEXT_PUBLIC_STRAPI_HOST } = process.env;
 
 export async function getHomeInfo() {
   return query(
@@ -9,7 +9,7 @@ export async function getHomeInfo() {
     const { head_banner_images } = res.data;
     const bannerData = head_banner_images.map((banner: HeadBanner) => {
       return {
-        url: `${STRAPI_HOST}/${banner?.image.url}`,
+        url: `${NEXT_PUBLIC_STRAPI_HOST}/${banner?.image.url}`,
         isDisplayed: banner.isDisplayed,
         brand: banner.brand?.slug,
         category: banner.category?.slug,
