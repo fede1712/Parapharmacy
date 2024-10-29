@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Brand, ResponseBrand } from "./types/brand.type";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useUpdateEffect } from "@/utils/useUpdateEffect";
 
 export default function BrandsPage() {
   const router = useRouter();
@@ -11,7 +12,7 @@ export default function BrandsPage() {
   const [inputSearchTerm, setInputSearchTerm] = useState("");
   const [debounceTimer, setDebounceTimer] = useState<NodeJS.Timeout | null>(null);
 
-  useEffect(() => {
+  useUpdateEffect(() => {
     const searchTermFromUrl = searchParams.get("search");
 
     if (searchTermFromUrl) {
@@ -45,7 +46,7 @@ export default function BrandsPage() {
     );
   };
 
-  useEffect(() => {
+  useUpdateEffect(() => {
     if (debounceTimer) {
       clearTimeout(debounceTimer);
     }
@@ -61,9 +62,7 @@ export default function BrandsPage() {
     }, 500);
     setDebounceTimer(timer);
 
-    return () => {
-      clearTimeout(timer);
-    };
+    return () => clearTimeout(timer);
   }, [inputSearchTerm, router]);
 
   return (

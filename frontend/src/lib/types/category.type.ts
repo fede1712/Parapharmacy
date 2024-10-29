@@ -4,4 +4,5 @@ export interface Category {
   slug: string;
   isHighlightedCategory: boolean;
   image: { id: number; documentId: string; url: string };
+  order: number;
 }

@@ -47,6 +47,7 @@ export const MenuList = ({ categories }: { categories: Categories[] }) => {
         </NavigationMenuItem>
         {categories
           .filter((category) => category.isHighlightedCategory)
+          .sort((a, b) => a.order - b.order)
           .map((category) => (
             <NavigationMenuItem
               key={category.documentId}

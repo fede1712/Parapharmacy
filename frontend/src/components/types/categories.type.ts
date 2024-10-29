@@ -19,4 +19,5 @@ export interface Categories {
   slug: CategoriesSlug;
   image: string;
   isHighlightedCategory: boolean;
+  order: number;
 }
