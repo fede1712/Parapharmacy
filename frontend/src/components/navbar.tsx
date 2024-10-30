@@ -40,7 +40,6 @@ export const Navbar = ({ categories }: { categories: Categories[] }) => {
           return { name, slug, image, documentId };
         })
       );
-      console.log(data);
       handleFocus();
     }
   };
