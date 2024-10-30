@@ -3,6 +3,7 @@ import { Urbanist } from "next/font/google";
 import "./globals.css";
 import { getCategories } from "@/lib/get-categories";
 import { Navbar } from "@/components/navbar";
+import { Footer } from "@/components/footer";
 
 const urbanist = Urbanist({ subsets: ["latin"] });
 
@@ -18,12 +19,13 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const categories = await getCategories();
+
   return (
     <html lang="es">
       <body className={urbanist.className}>
         <Navbar categories={categories} />
-
         {children}
+        <Footer />
       </body>
     </html>
   );

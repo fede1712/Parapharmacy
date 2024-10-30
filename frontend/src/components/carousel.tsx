@@ -6,13 +6,13 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import Link from "next/link";
 import { BannerData } from "./types/bannerData.type";
 
-export function CarouselPlugin({ bannerData }: { bannerData: any }) {
+export function CarouselPlugin({ bannerData }: { bannerData: BannerData[] }) {
   const plugin = useRef(Autoplay({ delay: 2000, stopOnInteraction: true }));
 
   return (
     <Carousel
       plugins={[plugin.current]}
-      className="w-9/12"
+      className="hidden sm:block w-9/12"
       onMouseEnter={plugin.current.stop}
       onMouseLeave={plugin.current.reset}
     >

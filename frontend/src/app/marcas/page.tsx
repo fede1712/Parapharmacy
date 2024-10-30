@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Brand, ResponseBrand } from "./types/brand.type";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useUpdateEffect } from "@/utils/useUpdateEffect";

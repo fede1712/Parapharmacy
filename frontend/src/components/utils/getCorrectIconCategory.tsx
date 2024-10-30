@@ -10,8 +10,8 @@ const icons: { [key in CategoriesSlug]: JSX.Element } = {
       fill="none"
       stroke="black"
       strokeWidth="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeLinecap="round"
+      strokeLinejoin="round"
       className="icon icon-tabler icons-tabler-outline icon-tabler-vaccine-bottle"
     >
       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -31,8 +31,8 @@ const icons: { [key in CategoriesSlug]: JSX.Element } = {
       fill="none"
       stroke="black"
       strokeWidth="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeLinecap="round"
+      strokeLinejoin="round"
       className="icon icon-tabler icons-tabler-outline icon-tabler-perfume"
     >
       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -52,8 +52,8 @@ const icons: { [key in CategoriesSlug]: JSX.Element } = {
       fill="none"
       stroke="black"
       strokeWidth="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeLinecap="round"
+      strokeLinejoin="round"
       className="icon icon-tabler icons-tabler-outline icon-tabler-hand-sanitizer"
     >
       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -73,8 +73,8 @@ const icons: { [key in CategoriesSlug]: JSX.Element } = {
       fill="none"
       stroke="black"
       strokeWidth="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeLinecap="round"
+      strokeLinejoin="round"
       className="icon icon-tabler icons-tabler-outline icon-tabler-apple"
     >
       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -92,8 +92,8 @@ const icons: { [key in CategoriesSlug]: JSX.Element } = {
       fill="none"
       stroke="black"
       strokeWidth="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeLinecap="round"
+      strokeLinejoin="round"
       className="icon icon-tabler icons-tabler-outline icon-tabler-eyeglass"
     >
       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -118,8 +118,8 @@ const icons: { [key in CategoriesSlug]: JSX.Element } = {
       fill="none"
       stroke="black"
       strokeWidth="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeLinecap="round"
+      strokeLinejoin="round"
       className="icon icon-tabler icons-tabler-outline icon-tabler-ball-football"
     >
       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -137,8 +137,8 @@ const icons: { [key in CategoriesSlug]: JSX.Element } = {
       fill="none"
       stroke="black"
       strokeWidth="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeLinecap="round"
+      strokeLinejoin="round"
       className="icon icon-tabler icons-tabler-outline icon-tabler-stethoscope"
     >
       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -170,8 +170,8 @@ const icons: { [key in CategoriesSlug]: JSX.Element } = {
       fill="none"
       stroke="black"
       strokeWidth="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeLinecap="round"
+      strokeLinejoin="round"
       className="icon icon-tabler icons-tabler-outline icon-tabler-baby-carriage"
     >
       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -192,8 +192,8 @@ const icons: { [key in CategoriesSlug]: JSX.Element } = {
       fill="none"
       stroke="black"
       strokeWidth="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeLinecap="round"
+      strokeLinejoin="round"
       className="icon icon-tabler icons-tabler-outline icon-tabler-crutches"
     >
       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -213,8 +213,8 @@ const icons: { [key in CategoriesSlug]: JSX.Element } = {
       fill="none"
       stroke="currentColor"
       strokeWidth="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeLinecap="round"
+      strokeLinejoin="round"
       className="icon icon-tabler icons-tabler-outline icon-tabler-leaf text-black"
     >
       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -231,8 +231,8 @@ const icons: { [key in CategoriesSlug]: JSX.Element } = {
       fill="none"
       stroke="currentColor"
       strokeWidth="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeLinecap="round"
+      strokeLinejoin="round"
       className="icon icon-tabler icons-tabler-outline icon-tabler-percentage text-red-600"
     >
       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
