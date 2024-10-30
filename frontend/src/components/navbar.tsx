@@ -1,6 +1,6 @@
 "use client";
 import { MenuList } from "./menu-list";
-import { Categories, Products } from "./types/categories.type";
+import { Categories, Products, ProductsResponse } from "./types/categories.type";
 import Link from "next/link";
 import { ItmesMenuMobile } from "./menu-mobile";
 import { useRouter } from "next/navigation";
@@ -12,7 +12,7 @@ import { Separator } from "./ui/separator";
 
 export const Navbar = ({ categories }: { categories: Categories[] }) => {
   const router = useRouter();
-  const [data, setData] = useState<any[]>([]);
+  const [data, setData] = useState<Products[]>([]);
   const [inputSearchProductsTerm, setInputSearchProductsTerm] = useState("");
   const [debounceTimer, setDebounceTimer] = useState<NodeJS.Timeout | null>(null);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
@@ -34,12 +34,13 @@ export const Navbar = ({ categories }: { categories: Categories[] }) => {
     const responsedData = await response.json();
     if (term) {
       setData(
-        responsedData.data.map((product: Products) => {
+        responsedData.data.map((product: ProductsResponse) => {
           const { name, slug, images: rawImage, documentId } = product;
           const image = `${process.env.NEXT_PUBLIC_STRAPI_HOST}/${rawImage[0].url}`;
           return { name, slug, image, documentId };
         })
       );
+      console.log(data);
       handleFocus();
     }
   };

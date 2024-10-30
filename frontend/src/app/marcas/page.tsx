@@ -72,15 +72,15 @@ export default function BrandsPage() {
         placeholder="Buscar marca..."
         value={inputSearchTerm}
         onChange={(e) => setInputSearchTerm(e.target.value)}
-        className="p-2 mx-12 mb-4 border rounded-md shadow-md focus:outline-none focus:border-blue-500"
+        className="w-full p-2 sm:mx-12 mb-4 border rounded-md shadow-md focus:outline-none focus:border-blue-500"
       />
-      <div className="grid grid-cols-5 gap-4 mx-12">
+      <div className="grid sm:grid-cols-5 gap-2 sm:gap-4 sm:mx-12">
         {data?.map((brand) => {
           return (
             <Link
               key={brand.documentId}
               href={`/marcas/${brand.slug}`}
-              className="flex p-4 cursor-pointer hover:text-green-600 border rounded-lg items-center justify-between hover:bg-gray-100"
+              className="w-full flex p-4 cursor-pointer hover:text-green-600 border rounded-lg items-center justify-between hover:bg-gray-100"
             >
               <h3 className="font-bold text-xs p-4">{brand.name}</h3>
               <img src={brand.image} alt={brand.name} className="rounded-full h-12 w-12 object-contain" />

@@ -12,11 +12,11 @@ export function CarouselPlugin({ bannerData }: { bannerData: BannerData[] }) {
   return (
     <Carousel
       plugins={[plugin.current]}
-      className="hidden sm:block w-9/12"
+      className="w-full sm:w-9/12"
       onMouseEnter={plugin.current.stop}
       onMouseLeave={plugin.current.reset}
     >
-      <CarouselContent className="w-full h-full">
+      <CarouselContent className="w-vws h-full">
         {bannerData
           .filter((eachBannerInfo: BannerData) => eachBannerInfo.isDisplayed)
           .map((eachBanner: BannerData, index: number) => (
@@ -31,8 +31,8 @@ export function CarouselPlugin({ bannerData }: { bannerData: BannerData[] }) {
             </CarouselItem>
           ))}
       </CarouselContent>
-      <CarouselPrevious />
-      <CarouselNext />
+      <CarouselPrevious className="hidden sm:flex" />
+      <CarouselNext className="hidden sm:flex" />
     </Carousel>
   );
 }

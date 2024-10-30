@@ -6,7 +6,7 @@ export default async function Home() {
 
   return (
     <main>
-      <div className="flex flex-col items-center justify-center">
+      <div className="sm:flex sm:flex-col sm:items-center sm:justify-center">
         <CarouselPlugin bannerData={bannerData} />
       </div>
     </main>

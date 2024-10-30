@@ -22,7 +22,7 @@ export interface Categories {
   order: number;
 }
 
-export interface Products {
+export interface ProductsResponse {
   brand: { id: 10; documentId: string; name: string };
   category: { id: 4; documentId: string; name: string };
   description: string;
@@ -34,5 +34,12 @@ export interface Products {
   price: number;
   quantity: string;
   stock: number;
+  slug: string;
+}
+
+export interface Products {
+  documentId: string;
+  image: string;
+  name: string;
   slug: string;
 }
