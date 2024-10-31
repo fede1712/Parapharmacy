@@ -73,7 +73,7 @@ function SearchBrands({
             );
           })
         ) : (
-          <p>No hay Marcas disponibles</p>
+          <p>No hay marcas disponibles</p>
         )}
       </div>
     </div>
