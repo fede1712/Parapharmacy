@@ -19,28 +19,32 @@ export const Navbar = ({ categories }: { categories: Categories[] }) => {
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const fetchProducts = async (term: string) => {
-    if (!term) return;
-    let url;
+    try {
+      if (!term) return;
+      let url;
 
-    if (term) {
-      setIsPopoverOpen(true);
-      url = `products?filters[name][$contains]=${term}&fields[0]=name&fields[1]=description&fields[2]=price&fields[3]=stock&fields[4]=quantity&fields[5]=discount&fields[6]=slug&populate[brand][fields][0]=name&populate[category][fields][0]=name&populate[images][fields][0]=url`;
-    }
+      if (term) {
+        setIsPopoverOpen(true);
+        url = `products?filters[name][$contains]=${term}&fields[0]=name&fields[1]=description&fields[2]=price&fields[3]=stock&fields[4]=quantity&fields[5]=discount&fields[6]=slug&populate[brand][fields][0]=name&populate[category][fields][0]=name&populate[images][fields][0]=url`;
+      }
 
-    const response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_HOST}/api/${url}`, {
-      headers: { Authorization: `Bearer ${process.env.STRAPI_TOKEN}`, "Cache-Control": "no-store" },
-    });
+      const response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_HOST}/api/${url}`, {
+        headers: { Authorization: `Bearer ${process.env.STRAPI_TOKEN}`, "Cache-Control": "no-store" },
+      });
 
-    const responsedData = await response.json();
-    if (term) {
-      setData(
-        responsedData.data.map((product: ProductsResponse) => {
-          const { name, slug, images: rawImage, documentId } = product;
-          const image = `${process.env.NEXT_PUBLIC_STRAPI_HOST}/${rawImage[0].url}`;
-          return { name, slug, image, documentId };
-        })
-      );
-      handleFocus();
+      const responsedData = await response.json();
+      if (term) {
+        setData(
+          responsedData.data.map((product: ProductsResponse) => {
+            const { name, slug, images: rawImage, documentId } = product;
+            const image = `${process.env.NEXT_PUBLIC_STRAPI_HOST}/${rawImage[0].url}`;
+            return { name, slug, image, documentId };
+          })
+        );
+        handleFocus();
+      }
+    } catch (error) {
+      console.error("Error al obtener productos:", error);
     }
   };
 
@@ -100,18 +104,22 @@ export const Navbar = ({ categories }: { categories: Categories[] }) => {
             </PopoverTrigger>
             <PopoverContent className="flex justify-center w-full">
               <ul className="max-h-96 overflow-y-auto">
-                {data.map((result, index) => (
-                  <Link href={`/productos/${result.slug}`} key={index} onClick={handleProdcutClick}>
-                    <li
-                      key={index}
-                      className="px-4 py-2 gap-1 hover:bg-gray-200 rounded cursor-pointer flex justify-start items-center"
-                    >
-                      <img src={result.image} alt={result.name} className="rounded-full h-12 w-12 object-contain" />
-                      <p className="text-sm font-medium">{result.name}</p>
-                    </li>
-                    <Separator />
-                  </Link>
-                ))}
+                {data && data.length > 0 ? (
+                  data.map((result, index) => (
+                    <Link href={`/productos/${result.slug}`} key={index} onClick={handleProdcutClick}>
+                      <li
+                        key={index}
+                        className="px-4 py-2 gap-1 hover:bg-gray-200 rounded cursor-pointer flex justify-start items-center"
+                      >
+                        <img src={result.image} alt={result.name} className="rounded-full h-12 w-12 object-contain" />
+                        <p className="text-sm font-medium">{result.name}</p>
+                      </li>
+                      <Separator />
+                    </Link>
+                  ))
+                ) : (
+                  <p>No hay productos disponibles</p>
+                )}
               </ul>
             </PopoverContent>
           </Popover>

@@ -76,21 +76,25 @@ export const ItmesMenuMobile = ({ categories }: { categories: Categories[] }) =>
           </svg>
           <p className="text-black sm:flex">Mi cuenta</p>
         </Link>
-        {categories
-          .sort((a, b) => a.order - b.order)
-          .map((category) => (
-            <Link
-              onClick={togglePopover}
-              key={category.documentId}
-              href={`/categorias/${category.slug}`}
-              className={`flex border-b border-t items-center text-md py-2 gap-2 ${
-                category.slug === "promociones" ? "text-red-600 font-semibold" : ""
-              }`}
-            >
-              {getCorrectIconCategory(category.slug)}
-              {category.name}
-            </Link>
-          ))}
+        {categories && categories.length > 0 ? (
+          categories
+            .sort((a, b) => a.order - b.order)
+            .map((category) => (
+              <Link
+                onClick={togglePopover}
+                key={category.documentId}
+                href={`/categorias/${category.slug}`}
+                className={`flex border-b border-t items-center text-md py-2 gap-2 ${
+                  category.slug === "promociones" ? "text-red-600 font-semibold" : ""
+                }`}
+              >
+                {getCorrectIconCategory(category.slug)}
+                {category.name}
+              </Link>
+            ))
+        ) : (
+          <p>No hay categorías disponibles</p>
+        )}
         <Link href={`/marcas`} className="flex justify-between items-center gap-2 text-md" onClick={togglePopover}>
           Nuestras marcas
         </Link>

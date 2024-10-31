@@ -17,19 +17,23 @@ export function CarouselPlugin({ bannerData }: { bannerData: BannerData[] }) {
       onMouseLeave={plugin.current.reset}
     >
       <CarouselContent className="w-vws h-full">
-        {bannerData
-          .filter((eachBannerInfo: BannerData) => eachBannerInfo.isDisplayed)
-          .map((eachBanner: BannerData, index: number) => (
-            <CarouselItem key={index}>
-              <Link href={eachBanner.brand ? `/marcas/${eachBanner.brand}` : `/categorias/${eachBanner.category}`}>
-                <img
-                  src={eachBanner.url}
-                  className="h-full object-cover"
-                  alt={eachBanner.brand ? eachBanner.brand : eachBanner.category}
-                />
-              </Link>
-            </CarouselItem>
-          ))}
+        {bannerData && bannerData.length > 0 ? (
+          bannerData
+            .filter((eachBannerInfo: BannerData) => eachBannerInfo.isDisplayed)
+            .map((eachBanner: BannerData, index: number) => (
+              <CarouselItem key={index}>
+                <Link href={eachBanner.brand ? `/marcas/${eachBanner.brand}` : `/categorias/${eachBanner.category}`}>
+                  <img
+                    src={eachBanner.url}
+                    className="h-full object-cover"
+                    alt={eachBanner.brand ? eachBanner.brand : eachBanner.category}
+                  />
+                </Link>
+              </CarouselItem>
+            ))
+        ) : (
+          <p>No hay banners disponibles</p>
+        )}
       </CarouselContent>
       <CarouselPrevious className="hidden sm:flex" />
       <CarouselNext className="hidden sm:flex" />

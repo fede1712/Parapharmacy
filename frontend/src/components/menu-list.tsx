@@ -30,39 +30,47 @@ export const MenuList = ({ categories }: { categories: Categories[] }) => {
           </Link>
           <NavigationMenuContent>
             <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px ">
-              {categories.map((category) => (
-                <ListItem
-                  key={category.documentId}
-                  title={category.name}
-                  href={`/categorias/${category.slug}`}
-                  className={`flex justify-between items-center ${
-                    category.slug === "promociones" ? "text-red-600 font-semibold" : ""
-                  }`}
-                >
-                  {getCorrectIconCategory(category.slug)}
-                </ListItem>
-              ))}
+              {categories && categories.length > 0 ? (
+                categories.map((category) => (
+                  <ListItem
+                    key={category.documentId}
+                    title={category.name}
+                    href={`/categorias/${category.slug}`}
+                    className={`flex justify-between items-center ${
+                      category.slug === "promociones" ? "text-red-600 font-semibold" : ""
+                    }`}
+                  >
+                    {getCorrectIconCategory(category.slug)}
+                  </ListItem>
+                ))
+              ) : (
+                <p>No hay categorías disponibles</p>
+              )}
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
-        {categories
-          .filter((category) => category.isHighlightedCategory)
-          .sort((a, b) => a.order - b.order)
-          .map((category) => (
-            <NavigationMenuItem
-              key={category.documentId}
-              className="p-2 rounded  justify-between items-center hover:bg-accent "
-            >
-              <Link
-                href={`/categorias/${category.slug}`}
-                className={`flex justify-between items-center gap-2  ${
-                  category.slug === "promociones" ? "text-red-600 font-semibold" : ""
-                }`}
+        {categories && categories.length > 0 ? (
+          categories
+            .filter((category) => category.isHighlightedCategory)
+            .sort((a, b) => a.order - b.order)
+            .map((category) => (
+              <NavigationMenuItem
+                key={category.documentId}
+                className="p-2 rounded  justify-between items-center hover:bg-accent "
               >
-                {category.name} {getCorrectIconCategory(category.slug)}
-              </Link>
-            </NavigationMenuItem>
-          ))}
+                <Link
+                  href={`/categorias/${category.slug}`}
+                  className={`flex justify-between items-center gap-2  ${
+                    category.slug === "promociones" ? "text-red-600 font-semibold" : ""
+                  }`}
+                >
+                  {category.name} {getCorrectIconCategory(category.slug)}
+                </Link>
+              </NavigationMenuItem>
+            ))
+        ) : (
+          <p>No hay categorías disponibles</p>
+        )}
       </NavigationMenuList>
     </NavigationMenu>
   );
