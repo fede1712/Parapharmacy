@@ -1,9 +1,9 @@
 "use client";
 import { Suspense, useState } from "react";
-import { Brand, ResponseBrand } from "./types/brand.type";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useUpdateEffect } from "@/utils/useUpdateEffect";
 import Link from "next/link";
+import { Brand, ResponseBrand } from "@/types/pages-types";
 
 function SearchBrands({
   fetchBrands,

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { getCategories } from "@/lib/get-categories";
-import { Category } from "./types/category.type";
+import { Category } from "@/types/pages-types";
 
 export default async function CategoryPage() {
   const categories = await getCategories();

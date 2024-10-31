@@ -1,3 +1,11 @@
+export interface Category {
+  name: string;
+  slug: string;
+  image: string;
+  documentId: string;
+  isHighlightedCategory: boolean;
+}
+
 export interface Brand {
   name: string;
   slug: string;
